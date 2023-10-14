@@ -1,0 +1,21 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "mariadb",
+            "database": "mydatabase",
+            "username": "user",
+            "password": "password"
+        }
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "terminal.integrated.fontSize": 12
+}

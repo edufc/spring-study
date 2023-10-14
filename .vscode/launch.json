@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringStudyApplication<spring-study>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.edufc.springstudy.SpringStudyApplication",
+            "projectName": "spring-study",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
