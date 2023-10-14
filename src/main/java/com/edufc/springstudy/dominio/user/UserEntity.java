@@ -8,17 +8,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "USER")
 @Getter
 @Setter
-@Builder
-@ToString
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class UserEntity {
 
     @Id
@@ -26,5 +27,6 @@ public class UserEntity {
     private UUID id;
 
     @Column(name = "NAME", length = 100, nullable = false)
+    @NonNull
     private String name;
 }

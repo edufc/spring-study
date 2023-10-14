@@ -13,31 +13,35 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "REVIEW")
 @Getter
 @Setter
-@Builder
-@ToString
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class ReviewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "DESCRIPTION", nullable = false)
+    @NonNull
+    private String description;
+
     @ManyToOne
-    @JoinColumn(name = "ID_BOOK", nullable = false)    
-    private BookEntity id_book;
+    @JoinColumn(name = "ID_BOOK", nullable = false)
+    @NonNull
+    private BookEntity book;
 
     @ManyToOne
     @JoinColumn(name = "ID_USER", nullable = false)
+    @NonNull
     private UserEntity user;
-
-    @Column(name = "DESCRIPTION", nullable = false)
-    private String description;
 }

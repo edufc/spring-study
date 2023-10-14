@@ -6,10 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -19,7 +18,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CategoryEntity {
 
     @Id
@@ -28,6 +27,5 @@ public class CategoryEntity {
     private short id;
 
     @Column(name = "NAME", length = 50, nullable = false)
-    @NonNull
     private String name;
 }
