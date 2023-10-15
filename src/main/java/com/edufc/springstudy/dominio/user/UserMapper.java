@@ -13,8 +13,8 @@ public class UserMapper {
         return entity.stream().map(UserMapper::valueOf).collect(Collectors.toList());
     }
 
-    public static UserEntity valueOf(final User entity) {
-        return new UserEntity(entity.name());
+    public static UserEntity valueOf(final User dto) {
+        return new UserEntity(dto.id(), dto.name());
     }
 
     public static void merge(UserEntity entity, final User dto) {

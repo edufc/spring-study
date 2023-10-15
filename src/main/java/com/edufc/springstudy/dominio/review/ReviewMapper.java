@@ -9,7 +9,7 @@ import com.edufc.springstudy.dominio.user.UserMapper;
 public class ReviewMapper {
 
     public static Review valueOf(final ReviewEntity entity) {
-        return new Review(entity.getId(), entity.getDescription(), null, null);
+        return new Review(entity.getId(), entity.getDescription(), BookMapper.valueOf(entity.getBook()), UserMapper.valueOf(entity.getUser()));
     }
 
     public static List<Review> valueOf(final List<ReviewEntity> entity) {
@@ -17,7 +17,7 @@ public class ReviewMapper {
     }
 
     public static ReviewEntity valueOf(final Review dto) {
-        return new ReviewEntity(dto.description(), BookMapper.valueOf(dto.book()), UserMapper.valueOf(dto.user()));
+        return new ReviewEntity(dto.id(), dto.description(), BookMapper.valueOf(dto.book()), UserMapper.valueOf(dto.user()));
     }
 
     public static void merge(ReviewEntity entity, final Review dto) {

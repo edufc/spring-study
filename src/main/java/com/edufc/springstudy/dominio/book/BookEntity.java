@@ -16,11 +16,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -30,8 +27,14 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class BookEntity {
+
+    public BookEntity(final UUID id, final String name, final String description, final CategoryEntity category) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -39,16 +42,13 @@ public class BookEntity {
     private UUID id;
 
     @Column(name = "NAME", length = 100, nullable = false)
-    @NonNull
     private String name;
 
     @Column(name = "DESCRIPTION", length = 255, nullable = false)
-    @NonNull
     private String description;
 
     @OneToOne
     @JoinColumn(name = "ID_CATEGORY", nullable = false)
-    @NonNull
     private CategoryEntity category;
 
     @OneToMany(fetch = FetchType.LAZY)

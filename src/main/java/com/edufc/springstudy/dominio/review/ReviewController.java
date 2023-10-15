@@ -1,6 +1,7 @@
-package com.edufc.springstudy.dominio.category;
+package com.edufc.springstudy.dominio.review;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,29 +17,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.edufc.springstudy.util.ControllerUtil;
 
 @Controller
-@RequestMapping("/categories")
-public class CategoryController {
+@RequestMapping("/reviews")
+public class ReviewController {
 
     @Autowired
-    private CategoryService categoryService;
+    private ReviewService reviewService;
 
     @PostMapping
-    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        var response = this.categoryService.addCategory(category);
+    public ResponseEntity<Review> addReview(@RequestBody Review Review) {
+        var response = this.reviewService.addReview(Review);
 
         return ResponseEntity.created(ControllerUtil.getLocation(response.id())).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> getAllCategories() {
-        var response = this.categoryService.getAllCategories();
+    public ResponseEntity<List<Review>> getAllReviews() {
+        var response = this.reviewService.getAllReviews();
 
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategory(@PathVariable final short id) {
-        var response = this.categoryService.getCategory(id);
+    public ResponseEntity<Review> getReview(@PathVariable final int id) {
+        var response = this.reviewService.getReview(id);
 
         if (response.isPresent())
             return ResponseEntity.ok(response.get());
@@ -47,15 +48,15 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<Category> updateCategory(@RequestBody Category Category) {
-        this.categoryService.updateCategory(Category);
+    public ResponseEntity<Review> updateReview(@RequestBody Review Review) {
+        this.reviewService.updateReview(Review);
 
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Category> deleteCategory(@PathVariable final short id) {
-        var isDeleted = this.categoryService.deleteCategory(id);
+    public ResponseEntity<Review> deleteReview(@PathVariable final int id) {
+        var isDeleted = this.reviewService.deleteReview(id);
 
         if (isDeleted)
             return ResponseEntity.noContent().build();

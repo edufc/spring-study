@@ -16,8 +16,8 @@ public class BookMapper {
         return entity.stream().map(BookMapper::valueOf).collect(Collectors.toList());
     }
 
-    public static BookEntity valueOf(final Book entity) {
-        return new BookEntity(entity.name(), entity.description(), CategoryMapper.valueOf(entity.category()));
+    public static BookEntity valueOf(final Book dto) {
+        return new BookEntity(dto.id(), dto.name(), dto.description(), CategoryMapper.valueOf(dto.category()));
     }
 
     public static void merge(BookEntity entity, final Book dto) {

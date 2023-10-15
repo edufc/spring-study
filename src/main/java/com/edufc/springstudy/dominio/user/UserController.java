@@ -1,6 +1,7 @@
-package com.edufc.springstudy.dominio.category;
+package com.edufc.springstudy.dominio.user;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,29 +17,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.edufc.springstudy.util.ControllerUtil;
 
 @Controller
-@RequestMapping("/categories")
-public class CategoryController {
+@RequestMapping("/users")
+public class UserController {
 
     @Autowired
-    private CategoryService categoryService;
+    private UserService userService;
 
     @PostMapping
-    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        var response = this.categoryService.addCategory(category);
+    public ResponseEntity<User> addUser(@RequestBody User User) {
+        var response = this.userService.addUser(User);
 
         return ResponseEntity.created(ControllerUtil.getLocation(response.id())).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> getAllCategories() {
-        var response = this.categoryService.getAllCategories();
+    public ResponseEntity<List<User>> getAllUsers() {
+        var response = this.userService.getAllUsers();
 
         return ResponseEntity.ok(response);
     }
 
+
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getCategory(@PathVariable final short id) {
-        var response = this.categoryService.getCategory(id);
+    public ResponseEntity<User> getUser(@PathVariable final UUID id) {
+        var response = this.userService.getUser(id);
 
         if (response.isPresent())
             return ResponseEntity.ok(response.get());
@@ -47,15 +49,15 @@ public class CategoryController {
     }
 
     @PutMapping
-    public ResponseEntity<Category> updateCategory(@RequestBody Category Category) {
-        this.categoryService.updateCategory(Category);
+    public ResponseEntity<User> updateUser(@RequestBody User User) {
+        this.userService.updateUser(User);
 
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Category> deleteCategory(@PathVariable final short id) {
-        var isDeleted = this.categoryService.deleteCategory(id);
+    public ResponseEntity<User> deleteUser(@PathVariable final UUID id) {
+        var isDeleted = this.userService.deleteUser(id);
 
         if (isDeleted)
             return ResponseEntity.noContent().build();
